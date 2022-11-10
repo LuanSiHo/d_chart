@@ -252,6 +252,7 @@ class DChartBar extends StatelessWidget {
 
   /// [minimumPaddingBetweenLabel] return padding between label
   int? minimumPaddingBetweenLabel;
+
   DChartBar({
     this.animate,
     this.animationDuration,
@@ -327,14 +328,14 @@ class DChartBar extends StatelessWidget {
       }),
       barRendererDecorator: showBarValue
           ? _charts.BarLabelDecorator(
-              labelAnchor: _getBarValueAnchor(barValueAnchor),
-              outsideLabelStyleSpec:
-                  _textStyleSpec(barValueFontSize, barValueColor),
-              insideLabelStyleSpec:
-                  _textStyleSpec(barValueFontSize, barValueColor),
-              labelPadding: 4,
-              labelPosition: _getBarValuePosition(barValuePosition),
-            )
+        labelAnchor: _getBarValueAnchor(barValueAnchor),
+        outsideLabelStyleSpec:
+        _textStyleSpec(barValueFontSize, barValueColor),
+        insideLabelStyleSpec:
+        _textStyleSpec(barValueFontSize, barValueColor),
+        labelPadding: 4,
+        labelPosition: _getBarValuePosition(barValuePosition),
+      )
           : null,
       domainAxis: _charts.OrdinalAxisSpec(
         renderSpec: _charts.SmallTickRendererSpec(
@@ -391,7 +392,7 @@ class DChartBar extends StatelessWidget {
           yAxisTitle ?? '',
           behaviorPosition: _getTitlePositionY(measureAxisTitlePosition),
           titleStyleSpec:
-              _textStyleSpec(measureAxisTitleFontSize, measureAxisTitleColor),
+          _textStyleSpec(measureAxisTitleFontSize, measureAxisTitleColor),
           outerPadding: measureAxisTitleInPadding,
           innerPadding: measureAxisTitleOutPadding,
           layoutPreferredSize: yAxisTitle == null ? 0 : null,
@@ -400,7 +401,7 @@ class DChartBar extends StatelessWidget {
           xAxisTitle ?? '',
           behaviorPosition: _getTitlePositionX(domainAxisTitlePosition),
           titleStyleSpec:
-              _textStyleSpec(domainAxisTitleFontSize, domainAxisTitleColor),
+          _textStyleSpec(domainAxisTitleFontSize, domainAxisTitleColor),
           outerPadding: domainAxisTitleOutPadding,
           innerPadding: domainAxisTitleInPadding,
           layoutPreferredSize: xAxisTitle == null ? 0 : null,
@@ -421,6 +422,7 @@ class DChartLine extends StatelessWidget {
 
   /// [lineColor] return color of line. can be custom based on line data
   LineColor<Color> lineColor;
+
   // [pointColor] return color of point at line
   LineColor<Color>? pointColor;
 
@@ -443,6 +445,7 @@ class DChartLine extends StatelessWidget {
 
   /// [animationDuration] return duration of animation
   Duration? animationDuration;
+
   DChartLine({
     this.animate,
     this.animationDuration,
@@ -545,6 +548,7 @@ class DChartPie extends StatelessWidget {
 
   /// [animationDuration] return duration of animation
   Duration? animationDuration;
+
   DChartPie({
     this.animate,
     this.animationDuration,
@@ -661,6 +665,7 @@ class DChartGauge extends StatelessWidget {
 
   /// [animationDuration] return duration of animation
   Duration? animationDuration;
+
   DChartGauge({
     this.animate,
     this.animationDuration,
@@ -726,29 +731,28 @@ class DChartGauge extends StatelessWidget {
 
 /// Custom Bar Chart extends to default flutter framework
 class DChartBarCustom extends StatefulWidget {
-  const DChartBarCustom(
-      {Key? key,
-      this.max,
-      required this.listData,
-      this.verticalDirection,
-      this.domainLineStyle,
-      this.measureLineStyle,
-      this.showDomainLine,
-      this.showMeasureLine,
-      this.spaceBetweenItem,
-      this.valueAlign,
-      this.domainLabelStyle,
-      this.measureLabelStyle,
-      this.showDomainLabel,
-      this.showMeasureLabel,
-      this.spaceDomainLabeltoChart,
-      this.spaceMeasureLabeltoChart,
-      this.showLoading,
-      this.loadingDuration,
-      this.valuePadding,
-      this.radiusBar,
-      this.spaceDomainLinetoChart,
-      this.spaceMeasureLinetoChart})
+  const DChartBarCustom({Key? key,
+    this.max,
+    required this.listData,
+    this.verticalDirection,
+    this.domainLineStyle,
+    this.measureLineStyle,
+    this.showDomainLine,
+    this.showMeasureLine,
+    this.spaceBetweenItem,
+    this.valueAlign,
+    this.domainLabelStyle,
+    this.measureLabelStyle,
+    this.showDomainLabel,
+    this.showMeasureLabel,
+    this.spaceDomainLabeltoChart,
+    this.spaceMeasureLabeltoChart,
+    this.showLoading,
+    this.loadingDuration,
+    this.valuePadding,
+    this.radiusBar,
+    this.spaceDomainLinetoChart,
+    this.spaceMeasureLinetoChart})
       : super(key: key);
 
   /// Limit top value for value chart, beside top domainAxis Line
@@ -868,7 +872,7 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
       });
       Future.delayed(
         widget.loadingDuration ?? const Duration(milliseconds: 1200),
-        () {
+            () {
           setState(() {
             loading = false;
           });
@@ -902,16 +906,16 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
   BorderSide domainLine() {
     return (widget.showDomainLine ?? false)
         ? widget.domainLineStyle != null
-            ? widget.domainLineStyle!
-            : const BorderSide()
+        ? widget.domainLineStyle!
+        : const BorderSide()
         : BorderSide.none;
   }
 
   BorderSide measureLine() {
     return (widget.showMeasureLine ?? false)
         ? widget.measureLineStyle != null
-            ? widget.measureLineStyle!
-            : const BorderSide()
+        ? widget.measureLineStyle!
+        : const BorderSide()
         : BorderSide.none;
   }
 
@@ -943,30 +947,30 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                 ),
                 child: LayoutBuilder(
                     builder: (context, constrainsDomainLabelHorz) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: List.generate(widget.listData.length, (index) {
-                      DChartBarDataCustom item = widget.listData[index];
-                      return Container(
-                        alignment: Alignment.center,
-                        height: (constrainsDomainLabelHorz.maxHeight /
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: List.generate(widget.listData.length, (index) {
+                          DChartBarDataCustom item = widget.listData[index];
+                          return Container(
+                            alignment: Alignment.center,
+                            height: (constrainsDomainLabelHorz.maxHeight /
                                 widget.listData.length) -
-                            (widget.spaceBetweenItem ??
-                                ((constrainsDomainLabelHorz.maxHeight /
+                                (widget.spaceBetweenItem ??
+                                    ((constrainsDomainLabelHorz.maxHeight /
                                         widget.listData.length) *
-                                    0.1)),
-                        child: item.labelCustom ??
-                            Text(
-                              item.label,
-                              style: widget.domainLabelStyle,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
+                                        0.1)),
+                            child: item.labelCustom ??
+                                Text(
+                                  item.label,
+                                  style: widget.domainLabelStyle,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                          );
+                        }),
                       );
                     }),
-                  );
-                }),
               ),
             SizedBox(width: widget.spaceDomainLabeltoChart ?? 5),
             Expanded(
@@ -983,31 +987,22 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                     child: Padding(
                       padding: paddingChart(),
                       child:
-                          LayoutBuilder(builder: (context, constraintsChart) {
+                      LayoutBuilder(builder: (context, constraintsChart) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ...List.generate(widget.listData.length, (index) {
                               DChartBarDataCustom item = widget.listData[index];
-
-                              return SizedBox(
-                                width: (item.value / max) *
-                                    constraintsChart.maxWidth,
-                                height: (constraintsChart.maxHeight /
-                                        widget.listData.length) -
-                                    (widget.spaceBetweenItem ??
-                                        ((constraintsChart.maxHeight /
-                                                widget.listData.length) *
-                                            0.1)),
-                                child: _DChartBarItemValueView(
+                              return SizedBox(width: constraintsChart.maxWidth,
+                                height: 28,
+                                child: CustomChartBarItemValueView(
                                   barDataCustom: item,
                                   valuePadding: widget.valuePadding,
                                   valueAlign: widget.valueAlign,
                                   radiusBar: widget.radiusBar,
                                   verticalOffsetTooltip: 0,
-                                ),
-                              );
+                                ));
                             }),
                           ],
                         );
@@ -1022,14 +1017,14 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                             (widget.spaceDomainLinetoChart ?? 0) +
                             ((widget.showMeasureLine ?? false)
                                 ? (widget.measureLineStyle == null
-                                    ? 0
-                                    : widget.measureLineStyle!.width)
+                                ? 0
+                                : widget.measureLineStyle!.width)
                                 : 0),
                         12 +
                             ((widget.showMeasureLine ?? false)
                                 ? (widget.measureLineStyle == null
-                                    ? 0
-                                    : widget.measureLineStyle!.width)
+                                ? 0
+                                : widget.measureLineStyle!.width)
                                 : 0) +
                             (widget.spaceMeasureLabeltoChart ?? 5),
                       ),
@@ -1044,8 +1039,8 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                           12 +
                               ((widget.showMeasureLine ?? false)
                                   ? (widget.measureLineStyle == null
-                                      ? 0
-                                      : widget.measureLineStyle!.width)
+                                  ? 0
+                                  : widget.measureLineStyle!.width)
                                   : 0) +
                               (widget.spaceMeasureLabeltoChart ?? 5),
                         ),
@@ -1076,8 +1071,8 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                     4 -
                         ((widget.showDomainLine ?? false)
                             ? (widget.domainLineStyle == null
-                                ? 0
-                                : widget.domainLineStyle!.width)
+                            ? 0
+                            : widget.domainLineStyle!.width)
                             : 0) -
                         (widget.spaceDomainLinetoChart ?? 0),
                   ),
@@ -1106,12 +1101,12 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                         DChartBarDataCustom item = widget.listData[index];
                         return SizedBox(
                           height:
-                              (item.value / max) * constraintsChart.maxHeight,
+                          (item.value / max) * constraintsChart.maxHeight,
                           width: (constraintsChart.maxWidth /
-                                  widget.listData.length) -
+                              widget.listData.length) -
                               (widget.spaceBetweenItem ??
                                   ((constraintsChart.maxWidth /
-                                          widget.listData.length) *
+                                      widget.listData.length) *
                                       0.1)),
                           child: Stack(
                             children: [
@@ -1121,8 +1116,8 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                                 valueAlign: widget.valueAlign,
                                 radiusBar: widget.radiusBar,
                                 verticalOffsetTooltip: (((item.value / max) *
-                                            constraintsChart.maxHeight) *
-                                        0.5) +
+                                    constraintsChart.maxHeight) *
+                                    0.5) +
                                     4,
                               ),
                               if (widget.showDomainLabel ?? false)
@@ -1133,8 +1128,8 @@ class _DChartBarCustomState extends State<DChartBarCustom> {
                                         (widget.spaceDomainLabeltoChart ?? 5) +
                                         ((widget.showDomainLine ?? false)
                                             ? (widget.domainLineStyle == null
-                                                ? 0
-                                                : widget.domainLineStyle!.width)
+                                            ? 0
+                                            : widget.domainLineStyle!.width)
                                             : 0) +
                                         (widget.spaceDomainLinetoChart ?? 0),
                                   ),
@@ -1256,7 +1251,7 @@ class _DChartBarItemValueView extends StatelessWidget {
       verticalOffset: verticalOffsetTooltip,
       child: GestureDetector(
         onTap:
-            barDataCustom.onTap == null ? null : () => barDataCustom.onTap!(),
+        barDataCustom.onTap == null ? null : () => barDataCustom.onTap!(),
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -1297,8 +1292,55 @@ String _numberAutoDigit(double value, [int maxDigit = 3]) {
   if (value.toInt() == value) {
     return value.toInt().toString();
   } else {
-    int digit = value.toString().split('.').last.length;
+    int digit = value
+        .toString()
+        .split('.')
+        .last
+        .length;
     if (digit > maxDigit) return value.toStringAsFixed(maxDigit);
     return value.toString();
   }
 }
+
+
+class CustomChartBarItemValueView extends StatelessWidget {
+  const CustomChartBarItemValueView({
+    Key? key,
+    this.valueAlign,
+    required this.verticalOffsetTooltip,
+    required this.barDataCustom,
+    this.valuePadding,
+    this.radiusBar,
+  }) : super(key: key);
+
+  final DChartBarDataCustom barDataCustom;
+  final Alignment? valueAlign;
+  final EdgeInsetsGeometry? valuePadding;
+  final double verticalOffsetTooltip;
+  final BorderRadius? radiusBar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(width: (barDataCustom.value ?? 0) / 50000 , decoration: BoxDecoration(borderRadius: radiusBar, color: barDataCustom.color)),
+        SizedBox(width: 10),
+        if (barDataCustom.showValue ?? false)
+        Expanded(
+          child: barDataCustom.valueCustom ??
+              Container(
+                color: Colors.red,
+                padding: valuePadding ?? const EdgeInsets.all(4),
+                child: Text(
+                  _numberAutoDigit(barDataCustom.value),
+                  style: barDataCustom.valueStyle,
+                ),
+              ),
+        ),
+    ],
+    );
+  }
+}
+
