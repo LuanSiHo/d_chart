@@ -1321,25 +1321,28 @@ class CustomChartBarItemValueView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(width: (barDataCustom.value ?? 0) / 50000 , decoration: BoxDecoration(borderRadius: radiusBar, color: barDataCustom.color)),
-        SizedBox(width: 10),
-        if (barDataCustom.showValue ?? false)
-        Expanded(
-          child: barDataCustom.valueCustom ??
-              Container(
-                color: Colors.red,
-                padding: valuePadding ?? const EdgeInsets.all(4),
-                child: Text(
-                  _numberAutoDigit(barDataCustom.value),
-                  style: barDataCustom.valueStyle,
+    return InkWell(
+      onTap: barDataCustom.onTap == null ? null : () => barDataCustom.onTap!(),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(width: (barDataCustom.value ?? 0) / 50000 , decoration: BoxDecoration(borderRadius: radiusBar, color: barDataCustom.color)),
+          SizedBox(width: 10),
+          if (barDataCustom.showValue ?? false)
+          Expanded(
+            child: barDataCustom.valueCustom ??
+                Container(
+                  color: Colors.red,
+                  padding: valuePadding ?? const EdgeInsets.all(4),
+                  child: Text(
+                    _numberAutoDigit(barDataCustom.value),
+                    style: barDataCustom.valueStyle,
+                  ),
                 ),
-              ),
-        ),
-    ],
+          ),
+      ],
+      ),
     );
   }
 }
